@@ -1,0 +1,19 @@
+apiVersion: V1
+kind: ReplicationController
+metadata:
+  name: myfirstrc
+  labels: 
+    appname: first
+    
+spec:
+  replicas: 5                # five pod create
+  template:
+    metadata:
+      name: mypod
+      labels: 
+        appname: first
+    spec:
+      conatiners:
+        - image: image_name
+          name: conatiner_name
+  
