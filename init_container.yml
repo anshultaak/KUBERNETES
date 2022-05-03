@@ -1,4 +1,5 @@
 # init conatiner always run first after ini continer complete than another container another continer run
+# if init container show error then it restart pod again and again
 
 apiVersion: V1
 kind: Pod
