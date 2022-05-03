@@ -35,10 +35,13 @@ kubectl exec pod_name -c conatiner_name env                      # its show env 
 kubectl exec pod_name -c conatiner_name -it bash                  # go inside conatiner
 
 SERVICES
-PORT ATTACH TO POD
-kubectl expose pod pod_name --port=8080 --target-port=80 --name my_first_service    # 80 is pod port and svc port 8080
+
+CLUSTER IP
+kubectl expose pod pod_name --port=8080 --target-port=80 --name my_first_service   #8080 port is pod and 80 is svc port 
 kubectl get services
 kubectl get service
 kubectl get svc
 
+NODE IP
+kubectl expose pod pod_name --type=NodePort --port=8000 --target-port=30087 --name my_first_service    # 8000 is pod port and svc port 30087
 
