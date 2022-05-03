@@ -1,0 +1,23 @@
+#kuberntes podes see command
+kubectl get pods
+kubectl get pod
+kubectl get po
+kubectl get pod pod_name -n namespace
+kubectl get po -o wide                # its give all information aboutpod ip , age , node, status, etc
+kubectl get po -o yaml                 # its full pod file in yml
+kubectl get po -o json                 # its full pod file in json
+kubectl explain pods| less             # its show how to write pod 
+kubectl describe pod pod_name           # its show all details pod and events 
+kubectl get po -w                      # watch pod  contiously
+kubectl delete pod podname
+
+#kubentes nodes see command
+kubectl get node
+kubectl get nodes
+
+#kubenets replicationController
+kubectl explain replicationController | less             # Its show how to write replicationController
+
+
+
+
