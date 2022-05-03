@@ -16,4 +16,7 @@ spec:
       conatiners:
         - image: image_name
           name: conatiner_name
+          
+          
+kubectl get rc  # show all replica
   
