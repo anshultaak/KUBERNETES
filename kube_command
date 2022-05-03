@@ -11,6 +11,7 @@ kubectl describe pod pod_name           # its show all details pod and events
 kubectl get po -w                      # watch pod  contiously
 kubectl delete pod podname
 kubectl delete pods --all                   # delete all pod
+kubectl explain pod --recursive | less         # how write yml_file for od
 
 #kubentes nodes see command
 kubectl get node
