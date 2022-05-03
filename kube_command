@@ -19,6 +19,7 @@ kubectl get nodes
 #kubenets replicationController
 kubectl explain replicationController | less             # Its show how to write replicationController
 
-
+# run for create yaml file to pod,rc,ns,etc
+kubectl create -f yaml_file_name --dry-run     # dry run your file is correct or not
 
 
