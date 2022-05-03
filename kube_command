@@ -29,3 +29,9 @@ kubectl apply -f yaml_file_name.yml --server-dry-run    # its show your file is 
 kubectl diff -f yaml_file_name.yml
 
 
+Inside the conatiner,pod
+docker conatiner exec -it conatiner_name bash
+kubectl exec pod_name -c conatiner_name env                      # its show env varibale
+kubectl exec pod_name -c conatiner_name -it bash                  # go inside conatiner
+
+
