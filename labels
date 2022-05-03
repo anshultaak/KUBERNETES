@@ -1,0 +1,7 @@
+KUBERNTES LABELS
+
+# Labels with command
+kubectl label pod pod_name env=testing             # its attach label with command
+kubectl label pod pod_name env-                    # delete label
+kubectl label pods --all status=runing              # attach all pod to this label
+kubectl gets pods --show-labels                      # show all labels
