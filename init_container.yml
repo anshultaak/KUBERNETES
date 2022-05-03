@@ -1,0 +1,17 @@
+# init conatiner always run first after ini continer complete than another container another continer run
+
+apiVersion: V1
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels: 
+    env: pod
+    
+spec:
+  initContainers:
+    - name: container_name
+      image: image_name
+      args: ["sleep", "50"]
+  containers:
+    - name: container_name
+      image: image_name
