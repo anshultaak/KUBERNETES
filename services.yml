@@ -1,7 +1,26 @@
 CLUSTER IP
 # you cannot cluster ip outside cluster 
-kubectl expose pod pod_name --port=8080 --target-port=80 --name my_first_service    # 8080 is pod port and svc port 80
+kubectl expose pod pod_name --port=8080 --target-port=80 --name my_first_service    # 8080 is pod port and svc port 80 
 
 NODE IP
 # you can access oustide cluster by interenet
 kubectl expose pod pod_name --type=NodePort --port=8000 --target-port=30087 --name my_first_service    # 8000 is pod port and svc port 30087
+
+yaml file
+apiVersion: V1
+kind: Service
+metadata:
+  name: myfirstservice
+  labels: 
+    servicelable: labelname
+    
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 32000                          
+      port: 9000
+      targetPort: 80
+  selector:
+    type: app                                         # same label give to pod
+    
+# reuest came on 32000 redirect 9000 and last go rdirect on port 80
