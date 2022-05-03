@@ -9,4 +9,9 @@ spec:
   containers:
     - name: container_name
       image: image_name
+      env:                                            # environment variable define
+        - name: myname
+          value: Anshul
+        - name: city
+          value: Pathankot
       
