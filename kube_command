@@ -10,6 +10,7 @@ kubectl explain pods| less             # its show how to write pod
 kubectl describe pod pod_name           # its show all details pod and events 
 kubectl get po -w                      # watch pod  contiously
 kubectl delete pod podname
+kubectl delete pods --all                   # delete all pod
 
 #kubentes nodes see command
 kubectl get node
