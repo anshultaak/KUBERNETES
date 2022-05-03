@@ -14,7 +14,7 @@ spec:
           value: Anshul
         - name: city
           value: Pathankot
-      args: ["sleep", "50"]                            # run this command when conatiners start, again and again run this command 
+      args: ["sleep", "50"]                            # run this command when conatiners start
     - name: second_container                            # second conatiner
       image: image_name
       
