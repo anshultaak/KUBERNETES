@@ -1,0 +1,20 @@
+# here momery and cpu limit and request
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mywebapp1
+  labels:
+    role: webserver-role
+    app: nginx
+spec:
+  containers:
+  - name: webserver1
+    image: nginx:1.6
+    resources:
+    limits:
+      memory: 512Mi                           # maximum memory
+      cpu: 1                                  # 1 = 1000 mili cpu, maximum cpu
+    requests:
+      memory: 256Mi                            # its pod minimum use 256 mb memory
+      cpu: 0.5                                 # its pod minimum use 500 mili cpu
