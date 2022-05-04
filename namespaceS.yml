@@ -1,0 +1,24 @@
+NAMESPACES
+kubetl get namespace
+kubetl get namespaces
+kubetl get ns
+
+kubetl create namespace namespace_name               # new name space create
+kubetl apply -f file.yml --namespace namespace_name                  # pod create particular namespace 
+kubetl apply -f file.yml -n namespace_name                  # pod create particular namespace 
+kubectl get pods --all-namespaces                # all namespace show with pod
+kubectl get pods -A                # all namespace show with pod
+
+
+ YAML FILE
+ 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: default-mem-demo
+  namespace: namspace_name                     # create pod on this name space
+spec:
+  containers:
+  - name: default-mem-demo-ctr
+    image: nginx
+
