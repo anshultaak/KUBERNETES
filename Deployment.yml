@@ -1,14 +1,21 @@
-DEPLOYMENT = you can update your appliaction easly and you can rollout pervious version
+DEPLOYMENT = you can update your appliaction easly and you can rollout and pervious version and rollout pause, resume
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: first-deployment
+  annotations:
+    kubernetes.io/change-caues: "my custom message"                 # when update version then in rollout history save by this message
 spec:
   selector:
     matchLabels:
       app: nginx
   replicas: 3                              # tells deployment to run 3 pods matching the template
+  minReadySecond: 30                        # after pod create kaitne time bd use ready state me bateya ( it's default vaue  0)
+  strategy:
+    rollingUpdate:
+      maxSurge: 1                            # one more pod create 3 to change 4 but after update it delete extra pod it back into 3  ( it's default vaue 25 %)                     
+      maxUnavailable: 1                      # when you update pod then first delete one pod and update one pod ( one by one update) ( ( it's default vaue 25 %)
   template:
     metadata:
       labels:
@@ -20,3 +27,18 @@ spec:
         ports:
         - containerPort: 80
 
+ # update version
+ open yaml file - change image version 1.14.3 - apply command run
+ kubectl apply -f file_name.yml --record          # its save record on rollout history by name
+ 
+
+rollout
+ kubectl rollout status deployment deploymnet_name               # show status update time pod
+ kubectl rollout history deployment deploymnet_name               # show all list pervious version
+ kubectl rollout undo deployment deployment_name                  # go last ervious version
+ kubectl rollout undo --to-revision=2 deployment deployment_name    # go specific pervious version , number you can see by history command
+ 
+ rollout pause and resume
+ kubectl rollout pause deployment deploymnet_name       # its pause between update and rollout time
+ kubectl rollout resume deployment deploymnet_name      # its resume deployment
+ 
