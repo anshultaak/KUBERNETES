@@ -31,7 +31,6 @@ spec:
  open yaml file - change image version 1.14.3 - apply command run
  kubectl apply -f file_name.yml --record          # its save record on rollout history by name
  
-
 rollout
  kubectl rollout status deployment deploymnet_name               # show status update time pod
  kubectl rollout history deployment deploymnet_name               # show all list pervious version
@@ -41,4 +40,15 @@ rollout
  rollout pause and resume
  kubectl rollout pause deployment deploymnet_name       # its pause between update and rollout time
  kubectl rollout resume deployment deploymnet_name      # its resume deployment
+ 
+ 
+ RECREATE STRATEGY
+ 
+ spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3                              # tells deployment to run 3 pods matching the template
+  strategy:
+    type: Recreate                          # when you updating version it's stop together all pod and update together
  
