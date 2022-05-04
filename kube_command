@@ -52,3 +52,15 @@ kubectl describe svc svc_name
 NODE IP
 kubectl expose pod pod_name --type=NodePort --port=8000 --target-port=30087 --name my_first_service    # 8000 is pod port and svc port 30087
 
+NAMESPACES
+kubetl get namespace
+kubetl get namespaces
+kubetl get ns
+
+kubetl create namespace namespace_name               # new name space create
+kubetl apply -f file.yml --namespace namespace_name                  # pod create particular namespace 
+kubetl apply -f file.yml -n namespace_name                  # pod create particular namespace 
+kubectl get pods --all-namespaces                # all namespace show with pod
+kubectl get pods -A                # all namespace show with pod
+
+
