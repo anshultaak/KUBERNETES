@@ -19,4 +19,15 @@ spec:
           
           
 kubectl get rc  # show all replica
+
+ReplicaController
+# if you want remove pod replica = then remove label from this pod
+kubectl delete rc ReplicaController_name                     # delete replica 
+kubectl delete rc --cascase=false ReplicaController_name          # delete replica but pod is not delete
+
+replicaController scaling
+kubectl scale rc --replicas=5 ReplicaController_name              # you want change replica number from this command
+kubect edit rc ReplicaController_name                             # here you can change file 
+vi file.yml -> edit file change replica nuber -> kubectl replace -f file.yml 
+
   
