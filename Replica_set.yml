@@ -1,1 +1,38 @@
 ReplicaSet =It is modified version replica controller and here is use equalative selector and set base selector
+# base selector = any one selector is match then create  
+
+apiVersion: V1
+kind: ReplicAseT
+metadata:
+  name: myfirstrc
+  labels: 
+    appname: first
+    
+spec:
+  replicas: 5                # five pod create
+  selector:                                 # set base replica
+    matchExpressions:                     
+      - key: app
+        operator: In                                          # these label value is match 
+        values:                             
+          - myapp1
+          - myapp2
+      - key: app
+        operator: NotIn                                           # these labes does not match
+        values:                             
+          - backend
+          - back
+  template:
+    metadata:
+      name: mypod
+      labels: 
+        appname: first
+    spec:
+      conatiners:
+        - image: image_name
+          name: conatiner_name
+          
+          
+kubetl get rc
+kubectl delete rc replcaset_name
+          
