@@ -21,6 +21,12 @@ kubectl get nodes
 
 #kubenets replicationController
 kubectl explain replicationController | less             # Its show how to write replicationController
+kubectl delete rc ReplicaController_name                     # delete replica 
+kubectl delete rc --cascase=false ReplicaController_name          # delete replica but pod is not delete
+kubectl scale rc --replicas=5 ReplicaController_name              # you want change replica number from this command
+kubect edit rc ReplicaController_name                             # here you can change file 
+vi file.yml -> edit file change replica nuber -> kubectl replace -f file.yml 
+
 
 # run for create yaml file to pod,rc,ns,etc
 kubectl create -f yaml_file_name.yml --dry-run     # dry run your file is correct or not, imperaltive command
