@@ -1,5 +1,8 @@
 # here momery and cpu limit and request
 
+kubectl delete quota resourcequota_name
+
+INSIDE POD LIMITS AND REQUEST DEFINE
 apiVersion: v1
 kind: Pod
 metadata:
@@ -18,3 +21,22 @@ spec:
     requests:
       memory: 256Mi                            # its pod minimum use 256 mb memory
       cpu: 0.5                                 # its pod minimum use 500 mili cpu
+
+RESOUCRE QUOTA FOR FULL NAMESPACES = limit for full namespace memory and cpu and cpu
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: pods-high
+  spec:
+    hard:
+      cpu: "1000"                               # maximum cpu you can use in this ns
+      memory: 200Gi                            # maximum memory you can use in this ns
+      pods: "10"                               # maximum pod you can create in this ns
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["high"]
