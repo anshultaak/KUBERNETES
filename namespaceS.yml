@@ -1,4 +1,11 @@
 NAMESPACES
+
+# explain default name space 
+default =
+kube-public = you can write these and command which any use with authenticaton
+kube-system = inside all componets like kube controller, kube schedular, etc
+kube-node-lease = it hearts to check workers node 
+
 kubetl get namespace
 kubetl get namespaces
 kubetl get ns
@@ -8,6 +15,8 @@ kubetl apply -f file.yml --namespace namespace_name                  # pod creat
 kubetl apply -f file.yml -n namespace_name                  # pod create particular namespace 
 kubectl get pods --all-namespaces                # all namespace show with pod
 kubectl get pods -A                # all namespace show with pod
+
+kubectl config set-context --current --namespace=test         # this change namespace default to test
 
 
  YAML FILE
