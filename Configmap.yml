@@ -1,0 +1,91 @@
+CONFIGMAP = in config map data store you can use in pod and container
+
+kubectl get configmaps
+kubectl get cm
+
+CREATE CONFIG MAP WITH COMMAND
+kubectl create cm configmap_name --from-literal=database_ip="192.168.0.4" --from-literal=database_ip="192.168.0.5"    # this value you can store on data
+kubectl describe cm configmap_name
+
+CREATE CONFIG MAP WITH SOME FILE and directory WHERE DATA STORE
+kubectl create cm configmap_name --from-file=file_name1 --from-file=file_name2      # you can use n number of file
+kubectl create cm configmap_name --from-file=dir_name         # if you lot file then you add all file in dir and use
+
+CREATE CONFIG MAP WITH SOME ENVIRONMENT FILE 
+kubectl create cm configmap_name --from-env-file=dir_name
+
+CREATE CONFIG MAP BY YAML FILE
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"
+  ui_properties_file_name: "user-interface.properties"
+
+  # file-like keys
+  game.properties: |                                # THIS  is file name
+    enemy.types=aliens,monsters
+    player.maximum-lives=5    
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true 
+    
+    
+    
+HOW TO USE CONFIG MAP IN POD
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      env:
+        # Define the environment variable
+        - name: PLAYER_INITIAL_LIVES                                # inside pod you this variable name used outpput
+          valueFrom:
+            configMapKeyRef:
+              name: variable2                        # which value add here is key from config and this key value store in PLAYER_INITIAL_LIVES  
+              key: configmap_name               # config map name
+        - name: UI_PROPERTIES_FILE_NAME                 # now in pod file all value store in name
+            valueFrom:
+            configMapKeyRef:
+              name: game-demo                           file key
+              key: configmap_name               # config map name
+       volumeMounts:
+      - name: config
+        mountPath: "/config"           # config map key and value are store in pod this path
+        readOnly: true
+  volumes:
+    - name: config
+      configMap:
+        name: configmap_name
+        items:                               # if you want some variable then this ite use only else without item its show you full variable
+        - key: "game.properties"            # if you want this variable value only
+          path: "game.properties"            # inside variable value in this file
+        - key: "user-interface.properties"
+          path: "user-interface.properties"              
+     
+   
+   
+ 
+ ALL VALUE FROM CONFG MAP
+ 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      envFrom:
+        - configMapRef:
+            name: configmap_name              # config map name write
+
