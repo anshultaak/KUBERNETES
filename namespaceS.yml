@@ -16,6 +16,8 @@ kubetl apply -f file.yml -n namespace_name                  # pod create particu
 kubectl get pods --all-namespaces                # all namespace show with pod
 kubectl get pods -A                # all namespace show with pod
 
+kubectl delete ns namespace_name       # delete namespace
+
 kubectl config set-context --current --namespace=test         # this change namespace default to test
 
 
