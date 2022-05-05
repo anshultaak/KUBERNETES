@@ -1,5 +1,5 @@
 # here momery and cpu limit and request
-
+    
 kubectl delete quota resourcequota_name
 
 INSIDE POD LIMITS AND REQUEST DEFINE
@@ -7,6 +7,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: mywebapp1
+  namespace: myns
   labels:
     role: webserver-role
     app: nginx
@@ -40,3 +41,45 @@ items:
       - operator : In
         scopeName: PriorityClass
         values: ["high"]
+        
+kubectl apply -f file_name.yml -n namespace_name
+
+WHEN SOME POD and conatiner IS CREATE BY DEFAULT RESOUCRE REQUEST AND LIMIT SET
+
+kubectl get limits -n namespace_name                                     # its limits of namespace
+kubectl get limitrange -n namespace_name    
+
+yaml file
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-limit-range
+  namespace: myns
+spec:
+  limits:
+  - default:                            
+      memory: 512Mi
+      cpu: 200m
+    defaultRequest:
+      memory: 256Mi
+      cpu: 100m
+    min:                         # minmum etni te milna hi cheya and always this value smaller than deaultrequest
+      cpu: 80m
+      memory: 50Mi
+    max:                          # maximum enti hi mila  and always this value larger than default
+      cpu: 300m
+      memory: 1000Mi 
+    type: Container
+    
+    #max limit /request ratio =  # then limit divide request it its value more than 2 then its not creating pod
+    
+    apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-limit-range
+  namespace: myns
+spec:
+  limits:
+    - maxLimitRequestRatio:                           # then limit divide request it its value more than 2 then its not creating pod
+        memory: 2
+      type: Container
