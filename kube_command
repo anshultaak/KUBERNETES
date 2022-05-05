@@ -1,3 +1,6 @@
+cluster
+kubectl cluster-info                   # cluster infro
+
 #kuberntes podes see command
 kubectl get pods
 kubectl get pod
