@@ -28,3 +28,22 @@ spec:
     type: app                                         # same label give to pod
     
 # reuest came on 32000 redirect 9000 and last go rdirect on port 80
+
+Multi-Port Services
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: MyApp
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 9376
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 9377
