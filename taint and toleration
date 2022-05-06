@@ -1,0 +1,21 @@
+TAINT AND TOLERATION
+# you want only these type pod create in this node , example only these pod who have 500 Mi
+kubectl describe node node_name
+
+kubectl taint node name_node mysize=large:Noschedule               # only large size pod create only this node
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  tolerations:
+  - key: "example-key"
+    operator: "Exists"
+    effect: "NoSchedule"
