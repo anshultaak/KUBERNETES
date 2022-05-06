@@ -1,0 +1,51 @@
+NODE SELECTOR = assign pod create in this node 
+
+LABEL ATTACH TO NODE
+kubectl label node node_name name=worker_one
+
+
+POD CREATE WITH NODE SELECTOR
+
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: web-server
+spec:
+  containers:
+    - name: web-app
+      image: nginx:1.16-alpine
+  nodeSelector:
+    name=worker_one                                      # only pod create this node which same label
+    
+    
+   NODE AFFINITY = Same like node selector 
+   
+   apiVersion: v1
+kind: Pod
+metadata:
+  name: with-pod-affinity
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: security
+            operator: In                        
+            values:
+            - S1
+        topologyKey: topology.kubernetes.io/zone
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: security                                             # key label this
+              operator: In
+              values:
+              - S2                                                       # value is this label
+          topologyKey: topology.kubernetes.io/zone
+  containers:
+  - name: with-pod-affinity
+    image: k8s.gcr.io/pause:2.0
