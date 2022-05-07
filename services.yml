@@ -46,3 +46,75 @@ spec:
       protocol: TCP
       port: 443
       targetPort: 9377
+      
+ LOAD BALANCER FOR KUBERNTES
+
+# create load balancer deployment by command
+kubectl expose deployment name_deploment --type LoadBalancer --port=8000 --target-port=30087 --name my_first_service    # 8000 is pod port and svc port 30087
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+spec:
+  selector:
+    app: example
+  ports:
+    - port: 8765
+      targetPort: 9376
+  type: LoadBalancer
+
+
+INGRESS
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host
+spec:
+  rules:
+  - host: "foo.bar.com"                     #internet use this link
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/bar"
+        backend:
+          service:
+            name: service1                          # name of service
+            port:
+              number: 80                             # port on whch service running
+  - host: "*.foo.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/foo"
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+
+INGRESS WITH TLS CERTIFCATE
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx-example
+  rules:
+    tls:
+    - hosts:
+      - myapp.com
+      secretName: myapp-secret-tls                                           # secret name
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
