@@ -1,2 +1,14 @@
 HORIZONTAL POD AUTO SCALING
 
+metric server = its check your cpu memory utilization and its connect with autoscaling  
+
+firsly you have to install metrics server in kuberntes custer
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl get deployment metrics-server -n kube-system                                                   # its verfiy metric server install
+
+ls
+vi metricsever.yml
+# go in this file find kind: depolyment and gomis continer args add (- --kubelet-insecure-tls) after it does not ask aboou certificate
+kubectl apply -f metricsever.yml
+
+kubectl autoscale deployment deployment_name --cpu-percent=20 --min=1 --max=10             # minmum pod 1 and maximum pod 10 and limit cpu averge utilization=20
