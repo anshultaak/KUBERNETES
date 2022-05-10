@@ -1,6 +1,10 @@
 CLUSTER IP
 # you cannot cluster ip outside cluster 
 kubectl expose pod pod_name --port=8080 --target-port=80 --name my_first_service    # 8080 is pod port and svc port 80 
+kubectl get services
+kubectl get service
+kubectl get svc
+kubectl describe svc svc_name
 
 NODE IP
 # you can access oustide cluster by interenet
