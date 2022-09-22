@@ -1,0 +1,4 @@
+CRD= Custom resource Definitions
+When we need to  use  Custom resouce then we use CRD, and like it after kuberntes install anything that goes under CRD
+
+firstly came api on native kuberntes if there is not present and then it goes on CRD .
