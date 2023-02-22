@@ -1,0 +1,6 @@
+Check which all port is open for this ip:
+zsh port-scan.sh 10.x.x.1
+
+Docker conatiner list that on server run with ip or domain:
+docker -H 10.0.x.x ps
+docker -H www.google.com ps
