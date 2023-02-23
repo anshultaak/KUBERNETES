@@ -57,6 +57,7 @@ spec:
     - --basic-auth-file=/tmp/users/user-details.csv
 Create the necessary roles and role bindings for these users:
 ```
+```
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
@@ -83,6 +84,7 @@ roleRef:
   kind: Role #this must be Role or ClusterRole
   name: pod-reader # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
+```
 Once created, you may authenticate into the kube-api server using the users credentials
 
 curl -v -k https://localhost:6443/api/v1/pods -u "user1:password123"
