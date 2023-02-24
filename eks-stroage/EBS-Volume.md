@@ -85,15 +85,25 @@ kubectl get pods -n kube-system
 | ClusterIP Service  | 05-mysql-clusterip-service.yml  |
 
 
+### storage-class
 
-# List Storage Classes
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata: 
+  name: ebs-sc
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer 
+```
+
+### List Storage Classes
 kubectl get sc
 
-# List PVC
+### List PVC
 kubectl get pvc 
 
-# List PV
+### List PV
 kubectl get pv
 
-# List pods
+#### List pods
 kubectl get pods 
