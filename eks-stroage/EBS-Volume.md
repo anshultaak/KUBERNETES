@@ -1,6 +1,8 @@
-EBS volume attach with AWS:
+#### EBS volume attach with AWS:
 
-# EKS Storage with EBS - Elastic Block Store
+
+# Installing EBS in EKS
+### EKS Storage with EBS - Elastic Block Store
 
 ## Step-01: Introduction
 - Create IAM Policy for EBS
