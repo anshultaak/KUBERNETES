@@ -1,7 +1,13 @@
-HEALTHCHECK
+# HEALTHCHECK
 
-LIVENESS PROBES
+### LIVENESS PROBES
 liveness inform us, Your kubernets container need to restart
+
+### Readiness probe
+you pod is ready to accept traffic
+
+### startup probe
+when conatiner statup 
 
 livenessProbe:
       httpGet:
