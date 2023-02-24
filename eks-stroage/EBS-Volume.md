@@ -1,7 +1,7 @@
 #### EBS volume attach with AWS:
 
 
-# Installing EBS in EKS
+
 ### EKS Storage with EBS - Elastic Block Store
 
 ## Step-01: Introduction
@@ -72,3 +72,28 @@ kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernete
 # Verify ebs-csi pods running
 kubectl get pods -n kube-system
 ```
+
+
+### Create these sevice
+
+| Kubernetes Object  | YAML File |
+| ------------- | ------------- |
+| Storage Class  | 01-storage-class.yml |
+| Persistent Volume Claim | 02-persistent-volume-claim.yml   |
+| Config Map  | 03-UserManagement-ConfigMap.yml  |
+| Deployment, Environment Variables, Volumes, VolumeMounts  | 04-mysql-deployment.yml  |
+| ClusterIP Service  | 05-mysql-clusterip-service.yml  |
+
+
+
+# List Storage Classes
+kubectl get sc
+
+# List PVC
+kubectl get pvc 
+
+# List PV
+kubectl get pv
+
+# List pods
+kubectl get pods 
