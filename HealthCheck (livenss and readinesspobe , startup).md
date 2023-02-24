@@ -9,6 +9,8 @@ you pod is ready to accept traffic
 ### startup probe
 when conatiner statup 
 
+````
+
 livenessProbe:
       httpGet:
         path: /healthz                              # its endpoint of application check ( search internet by tis path you get health status0
@@ -73,4 +75,4 @@ spec:
       failureThreshold: 30                                      # 30 * 10 = 300, its maximum time is 5 min to start application 
       periodSeconds: 10
     
- 
+ ```
